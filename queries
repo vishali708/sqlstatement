@@ -1,0 +1,20 @@
+select count(Address),avg(Soldprice)
+from thisyear
+where remarksforclients like '%pool%';
+
+select avg(Soldprice)
+from thisyear
+where remarksforclients not like '%pool%';
+
+
+declare @PriceWithoutPool as float;
+declare @PriceWithPool as float;
+select @PriceWithoutPool = avg(soldprice) from thisyear
+where remarksforclients not like '%pool%';
+select @PriceWithPool = avg(soldprice) from thisyear
+where remarksforclients like '%pool%';
+print @PriceWithoutPool;
+print @PriceWithPool;
+
+
+print @PriceWithPool-@PriceWithoutPool;
